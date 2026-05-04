@@ -12,3 +12,10 @@ Praticar lógica de programação e manipulação de dados em memória.
 
 ## Observação
 Projeto inicial, podendo ser melhorado futuramente com armazenamento em arquivos e novas funcionalidades.
+
+## Como executar
+1. Compile o código:
+gcc sistema_cadastro.c -o sistema
+
+2. Execute:
+./sistema

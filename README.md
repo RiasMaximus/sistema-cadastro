@@ -1,2 +1,14 @@
-# sistema-cadastro
-Sistema simples de cadastro em linguagem C, feito para praticar structs, funções, menus e manipulação de dados em memória.
+# Sistema de Cadastro em C
+
+Projeto simples desenvolvido para praticar linguagem C, utilizando structs, funções e menu interativo no terminal.
+
+## Funcionalidades
+- Cadastro de usuários
+- Listagem de usuários
+- Remoção de usuários
+
+## Objetivo
+Praticar lógica de programação e manipulação de dados em memória.
+
+## Observação
+Projeto inicial, podendo ser melhorado futuramente com armazenamento em arquivos e novas funcionalidades.

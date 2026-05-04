@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <string.h>
+
+#define LIMITE 50
+
+// Projeto simples de cadastro feito para praticar linguagem C
+
+typedef struct {
+    int id;
+    char nome[50];
+    int idade;
+    char email[80];
+} Pessoa;
+
+void cadastrar(Pessoa lista[], int *total) {
+    Pessoa p;
+
+    if (*total >= LIMITE) {
+        printf("\nLimite de cadastros atingido.\n");
+        return;
+    }
+
+    p.id = *total + 1;
+
+    printf("\nNome: ");
+    getchar();
+    fgets(p.nome, 50, stdin);
+    p.nome[strcspn(p.nome, "\n")] = '\0';
+
+    printf("Idade: ");
+    scanf("%d", &p.idade);
+
+    printf("Email: ");
+    getchar();
+    fgets(p.email, 80, stdin);
+    p.email[strcspn(p.email, "\n")] = '\0';
+
+    lista[*total] = p;
+    (*total)++;
+
+    printf("\nCadastro feito com sucesso.\n");
+}
+
+void listar(Pessoa lista[], int total) {
+    int i;
+
+    if (total == 0) {
+        printf("\nNenhuma pessoa cadastrada.\n");
+        return;
+    }
+
+    printf("\n--- Cadastros ---\n");
+
+    for (i = 0; i < total; i++) {
+        printf("\nID: %d", lista[i].id);
+        printf("\nNome: %s", lista[i].nome);
+        printf("\nIdade: %d", lista[i].idade);
+        printf("\nEmail: %s\n", lista[i].email);
+    }
+}
+
+void remover(Pessoa lista[], int *total) {
+    int id;
+    int i, j;
+    int achou = 0;
+
+    printf("\nDigite o ID para remover: ");
+    scanf("%d", &id);
+
+    for (i = 0; i < *total; i++) {
+        if (lista[i].id == id) {
+            achou = 1;
+
+            for (j = i; j < *total - 1; j++) {
+                lista[j] = lista[j + 1];
+            }
+
+            (*total)--;
+            printf("\nCadastro removido.\n");
+            break;
+        }
+    }
+
+    if (achou == 0) {
+        printf("\nID nao encontrado.\n");
+    }
+}
+
+int main() {
+    Pessoa lista[LIMITE];
+    int total = 0;
+    int opcao;
+
+    do {
+        printf("\n===== MENU =====\n");
+        printf("1 - Cadastrar pessoa\n");
+        printf("2 - Listar cadastros\n");
+        printf("3 - Remover cadastro\n");
+        printf("0 - Sair\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+
+        if (opcao == 1) {
+            cadastrar(lista, &total);
+        } else if (opcao == 2) {
+            listar(lista, total);
+        } else if (opcao == 3) {
+            remover(lista, &total);
+        } else if (opcao == 0) {
+            printf("\nSaindo...\n");
+        } else {
+            printf("\nOpcao invalida.\n");
+        }
+
+    } while (opcao != 0);
+
+    return 0;
+}
